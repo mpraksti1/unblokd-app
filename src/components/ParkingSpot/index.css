@@ -1,0 +1,32 @@
+.spot {
+  display: block;
+  color: rgb(172, 172, 172);
+  font-size: 1.5rem;
+  padding-bottom: 20px;
+}
+
+.num {
+  color: rgb(201, 154, 67);
+  font-weight: bold;
+  width: 50px;
+}
+
+.il {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.red, .green {
+  border: 2px solid;
+}
+
+.red {
+  color: red;
+  border-color: red;
+}
+
+.green {
+  color: green;
+  border-color: green;
+  padding: 3px;
+}
