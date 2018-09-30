@@ -14,12 +14,13 @@ const WhosHereModal = ({open, currentOccupant, closeSelf, clearSpot}) => {
     <div className={classN}>
       <div className="close" onClick={closeSelf}>X</div>
       <div className="blocker">
-        <div>{name}</div>
-        <div>
-          <a href="tel:+">{phoneNumber}</a>
+        <div className="blocker-name">{name}</div>
+        <div className="md">is your blocker! Yell at them at this #:</div>
+        <div className="blocker-phone">
+          <a href="tel:+" className="basic-link">{phoneNumber}</a>
         </div>
       </div>
-      <p>Parked here and leaving? <span className="clear" onClick={clearNClose}>Clear this spot!</span></p>
+      <p className="sm">Parked here and leaving? <span className="basic-link" onClick={clearNClose}>Clear this spot!</span></p>
     </div>
   )
 }

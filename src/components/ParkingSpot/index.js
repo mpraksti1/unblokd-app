@@ -22,17 +22,17 @@ export default class ParkingSpot extends Component {
 
         if (taken) {
             return (
-                <div className="il">
-                    <div className="red il">TAKEN</div>
-                    <div className="add il" onClick={this.toggleWhosHereModal}>Who's here!?</div>
-                </div>
+                <React.Fragment>
+                    <div className="red">OPEN</div>
+                    <div className="basic-link" onClick={this.toggleWhosHereModal}>Who's here!?</div>
+                </React.Fragment>
             )
         } else {
             return (
-                <div className="il">
-                    <div className="green il">OPEN</div>
-                    <div className="add il" onClick={this.toggleParkingModal}>Park here!</div>
-                </div>
+                <React.Fragment>
+                    <div className="green ">OPEN</div>
+                    <div className="basic-link" onClick={this.toggleParkingModal}>Park here!</div>
+                </React.Fragment>
             )
         }
     };
@@ -45,7 +45,7 @@ export default class ParkingSpot extends Component {
                 console.log({ querySnapshot });
                 querySnapshot.forEach(function (doc) {
                     console.log('doc.id', doc.id);
-                    // Build doc ref from doc.id
+                    // Bud doc ref from doc.id
                     window.db.collection("parkingSpots").doc(doc.id).update({
                         'taken': false,
                         'currentOccupant.name': null,
@@ -77,7 +77,7 @@ export default class ParkingSpot extends Component {
 
         return (
             <div className={classN}>
-                <div className="num il">
+                <div className="num ">
                     {spotNumber}
                 </div>
                 {this.renderTakenStatus()}

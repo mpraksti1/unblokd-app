@@ -1,32 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: #333;
+  font-family: 'Montserrat', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background: #2a075d;
+  background-image: url('~/assets/img/parking-lot.png');
+  background-blend-mode: overlay;
+  background-attachment: fixed;
+  background-position: center center;
 }
 
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
   background-color: #222;
-  padding: 20px;
+  padding: 10px;
   color: white;
   margin-bottom: 25px;
+  font-family: 'Rammetto One', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .App-title {
   font-size: 2em;
+  margin: 0;
 }
 
-.App-intro {
-  font-size: large;
+.sm {
+  font-size: 0.7rem;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.md {
+  font-size: 0.9rem;
 }

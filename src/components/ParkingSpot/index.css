@@ -1,32 +1,55 @@
 .spot {
   display: block;
   color: rgb(172, 172, 172);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   padding-bottom: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.spot > div {
+  margin-right: 15px;
 }
 
 .num {
-  color: rgb(201, 154, 67);
+  color: rgb(218, 146, 12);
   font-weight: bold;
   width: 50px;
 }
 
-.il {
-  display: inline-block;
-  margin-right: 10px;
-}
-
 .red, .green {
   border: 2px solid;
+  padding: 3px;
 }
 
 .red {
   color: red;
   border-color: red;
+  position: relative;
+  background: linear-gradient(to top right, #2a075d calc(50% - 3px), red, #2a075d calc(50% + 3px) )
 }
+
+/* .red::before {
+  content: "";
+  display: block;
+  width: 77px;
+  height: 3px;
+  position: absolute;
+  background: red;
+  transform: rotate(24deg);
+  top: 14px;
+  left: -5px;
+} */
 
 .green {
   color: green;
   border-color: green;
-  padding: 3px;
+}
+
+.basic-link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: rgb(218, 146, 12);
+  white-space: nowrap;
 }

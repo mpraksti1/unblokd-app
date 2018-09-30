@@ -61,13 +61,14 @@ class ParkHereModal extends Component {
 
     return (
       <div className={classN}>
+        <div>Take this spot!</div>
         <div className="close" onClick={this.closeSelf}>X</div>
         <form onSubmit={(e) => this.submitForm(e)}>
           <label htmlFor="name">
-            <input type="text" id="name" name="name" onChange={(e) => this.handleChange(e)} />
+            <input type="text" id="name" name="name" placeholder="Name" onChange={(e) => this.handleChange(e)} />
           </label>
           <label htmlFor="phone">
-            <input type="text" id="phone" name="phone" onChange={(e) => this.handleChange(e)} />
+            <input type="text" id="phone" name="phone" placeholder="Phone #" onChange={(e) => this.handleChange(e)} />
           </label>
           <button type="submit">Park me!</button>
         </form>

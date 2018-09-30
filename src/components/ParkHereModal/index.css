@@ -1,11 +1,14 @@
 .modal {
     position: fixed;
     top: 10px;
-    bottom: 10px;
     right: 10px;
     left: 10px;
-    background: crimson;
+    background: #461785;
     display: none;
+    z-index: 10;
+    margin: 0!important;
+    padding: 16px;
+    width: 90%
 }
 
 .modal.open {
@@ -13,11 +16,7 @@
 }
 
 form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    transform: translate(-50%, -50%);
+    padding-top: 16px;
 }
 
 label { display: block; }
@@ -25,10 +24,11 @@ label { display: block; }
 input {
     width: 100%;
     background: rgb(230, 230, 230);
-    height: 50px;
     border: none;
     margin-bottom: 16px;
     border-radius: 3px;
+    padding: 16px;
+    font-size: 1.1rem;
 }
 
 button {
@@ -47,4 +47,8 @@ button {
     right: 15px;
     color: whitesmoke;
     cursor: pointer;
+}
+
+.blocker {
+    padding: 
 }

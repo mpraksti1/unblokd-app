@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ParkingSpot from '../ParkingSpot';
+import './index.css';
 
 export default class index extends Component {
   data = [];
@@ -30,7 +31,7 @@ export default class index extends Component {
 
   render() {
     return (
-      <div>
+      <div className="spot-list">
         { this.state.spots && 
           this.state.spots.map(({spotNumber, taken, currentOccupant}) => {
             return <ParkingSpot
