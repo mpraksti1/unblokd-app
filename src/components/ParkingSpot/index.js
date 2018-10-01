@@ -42,9 +42,7 @@ export default class ParkingSpot extends Component {
         window.db.collection("parkingSpots").where("spotNumber", "==", this.props.spotNumber)
             .get()
             .then(function (querySnapshot) {
-                console.log({ querySnapshot });
                 querySnapshot.forEach(function (doc) {
-                    console.log('doc.id', doc.id);
                     // Bud doc ref from doc.id
                     window.db.collection("parkingSpots").doc(doc.id).update({
                         'taken': false,
@@ -53,7 +51,6 @@ export default class ParkingSpot extends Component {
                     });
                 });
             }).then(function (docRef) {
-                console.log("Document written with ID: ");
                 self.props.refreshAll();
             })
             .catch(function (error) {
@@ -62,12 +59,10 @@ export default class ParkingSpot extends Component {
     }
 
     toggleParkingModal = () => {
-        console.log('doing the thing', this.state);
         this.setState({ parkingOpen: !this.state.parkingOpen });
     };
 
     toggleWhosHereModal = () => {
-        console.log('doing the thing', this.state);
         this.setState({ whosHereOpen: !this.state.whosHereOpen });
     };
 

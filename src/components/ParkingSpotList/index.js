@@ -3,44 +3,20 @@ import ParkingSpot from '../ParkingSpot';
 import './index.css';
 
 export default class index extends Component {
-  data = [];
-  
-  constructor() {
-    super();
-    this.state = {
-      spots: []
-    }
-    this.getData = this.getData.bind(this);
-  }
-
-  componentDidMount() {
-    this.getData();
-  }
-
-  getData = () => {
-    window.db.collection('parkingSpots')
-    .get()
-    .then(collection => {
-        const spots = collection.docs
-          .map(doc => doc.data())
-          .sort((a,b) => { return a.spotNumber - b.spotNumber});
-        this.setState({ spots })
-        console.log(this.state);
-    })
-  }
-
   render() {
     return (
       <div className="spot-list">
-        { this.state.spots && 
-          this.state.spots.map(({spotNumber, taken, currentOccupant}) => {
-            return <ParkingSpot
-              key={spotNumber}
-              spotNumber={spotNumber}
-              taken={taken}
-              currenOccupant={currentOccupant}
-              refreshAll={this.getData}
-            />
+        { this.props.parkingSpots && 
+          this.props.parkingSpots.map(({spotNumber, taken, currentOccupant}) => {
+            return (
+              <ParkingSpot
+                key={spotNumber}
+                spotNumber={spotNumber}
+                taken={taken}
+                currenOccupant={currentOccupant}
+                refreshAll={this.props.refreshAll}
+              />
+            )
         })}
       </div>
     )

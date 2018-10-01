@@ -22,7 +22,6 @@ class ParkHereModal extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value })
-    console.log(this.state);
   }
 
   submitForm(e) {
@@ -33,9 +32,7 @@ class ParkHereModal extends Component {
     window.db.collection("parkingSpots").where("spotNumber", "==", this.props.spotNumber)
       .get()
       .then(function (querySnapshot) {
-        console.log({querySnapshot});
         querySnapshot.forEach(function (doc) {
-          console.log('doc.id', doc.id);
           // Build doc ref from doc.id
           window.db.collection("parkingSpots").doc(doc.id).update({
             'taken': true,
@@ -44,7 +41,6 @@ class ParkHereModal extends Component {
           });
         });
       }).then(function (docRef) {
-        console.log("Document written with ID: ");
         self.closeSelf();
         self.props.refreshAll();
       })
@@ -55,7 +51,6 @@ class ParkHereModal extends Component {
 
   render() {
     const { open } = this.props;
-    console.log('rendering!', open);
 
     const classN = open ? 'modal open' : 'modal';
 

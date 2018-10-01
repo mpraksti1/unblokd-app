@@ -19,7 +19,6 @@ body {
   background-color: #222;
   padding: 10px;
   color: white;
-  margin-bottom: 25px;
   font-family: 'Rammetto One', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -34,4 +33,86 @@ body {
 
 .md {
   font-size: 0.9rem;
+}
+
+.map-link {
+  background: #3e0691;
+  color: whitesmoke;
+  padding: 7px;
+  cursor: pointer;
+  font-family: 'Rammetto One', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.map {
+  position: fixed;
+  top: 111px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #2a075d;
+  display: none;
+}
+
+.map.open {
+  display: block;
+}
+
+.map-spots {
+  display: grid;
+  grid-template-areas: 
+    ". . three five . seven nine"
+    "one . two four . six eight";
+  grid-gap: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.map-spot {
+  background: green;
+  height: 60px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: whitesmoke;
+}
+
+.map-spot.taken {
+  background: red;
+}
+
+.map-spot:nth-child(1) {
+  grid-area: one;
+}
+
+.map-spot:nth-child(2) {
+  grid-area: two;
+}
+.map-spot:nth-child(3) {
+  grid-area: three;
+}
+
+.map-spot:nth-child(4) {
+  grid-area: four;
+}
+
+.map-spot:nth-child(5) {
+  grid-area: five;
+}
+.map-spot:nth-child(6) {
+  grid-area: six;
+}
+
+.map-spot:nth-child(7) {
+  grid-area: seven;
+}
+
+.map-spot:nth-child(8) {
+  grid-area: eight;
+}
+
+.map-spot:nth-child(9) {
+  grid-area: nine;
 }
