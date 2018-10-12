@@ -75,7 +75,7 @@ body {
 
 .map-spots {
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     ". . three five . seven nine"
     "one . two four . six eight";
   grid-gap: 1rem;
@@ -141,4 +141,8 @@ button {
   border: none;
   text-transform: uppercase;
   border-radius: 3px;
+}
+
+input {
+  color: rgb(117,117,117);
 }
