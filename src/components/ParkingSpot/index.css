@@ -18,7 +18,7 @@
   width: 50px;
 }
 
-.red, .green {
+.red, .green, .teal {
   border: 2px solid;
   padding: 3px;
 }
@@ -30,21 +30,14 @@
   background: linear-gradient(to top right, #2a075d calc(50% - 3px), red, #2a075d calc(50% + 3px) )
 }
 
-/* .red::before {
-  content: "";
-  display: block;
-  width: 77px;
-  height: 3px;
-  position: absolute;
-  background: red;
-  transform: rotate(24deg);
-  top: 14px;
-  left: -5px;
-} */
-
 .green {
   color: green;
   border-color: green;
+}
+
+.teal {
+  color: #07dada;
+  border-color: #07dada;
 }
 
 .basic-link {

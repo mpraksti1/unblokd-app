@@ -43,6 +43,22 @@ body {
   font-family: 'Rammetto One', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.map-link:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.left-link {
+  float: left;
+  padding-left: 10px;
+}
+
+.right-link {
+  float: right;
+  padding-right: 10px;
+}
+
 .map {
   position: fixed;
   top: 111px;
@@ -115,4 +131,14 @@ body {
 
 .map-spot:nth-child(9) {
   grid-area: nine;
+}
+
+button {
+  background: #960996;
+  padding: 10px;
+  font-size: 1em;
+  color: whitesmoke;
+  border: none;
+  text-transform: uppercase;
+  border-radius: 3px;
 }

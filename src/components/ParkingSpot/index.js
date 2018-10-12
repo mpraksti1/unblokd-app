@@ -1,94 +1,92 @@
 import React, { Component } from 'react'
-import ParkHereModal from '../ParkHereModal';
-import WhosHereModal from '../WhosHereModal';
+import { ACTION_MODAL, INFO_MODAL } from '../../Constants/Modals';
 import './index.css';
 
 export default class ParkingSpot extends Component {
-    constructor() {
-        super();
-        this.renderTakenStatus = this.renderTakenStatus.bind(this);
-        this.toggleParkingModal = this.toggleParkingModal.bind(this);
-        this.toggleWhosHereModal = this.toggleWhosHereModal.bind(this);
-        this.clearSpot = this.clearSpot.bind(this);
+  constructor(props) {
+    super(props);
+    this.renderTakenStatus = this.renderTakenStatus.bind(this);
+    this.toggleActionModal = this.toggleActionModal.bind(this);
+    this.toggleInfoModal = this.toggleInfoModal.bind(this);
+    this.state = {
+      actionOpen: false,
+      infoOpen: false,
+    }
+  }
 
-        this.state = {
-            parkingOpen: false,
-            whosHereOpen: false
-        }
+  renderTakenStatus = () => {
+    const { taken, user, currentOccupant } = this.props;
+    
+    let isParkedHere;
+    if (user) {
+      isParkedHere = user.uid === currentOccupant.id;
     }
 
-    renderTakenStatus = () => {
-        const { taken } = this.props;
-
-        if (taken) {
-            return (
-                <React.Fragment>
-                    <div className="red">OPEN</div>
-                    <div className="basic-link" onClick={this.toggleWhosHereModal}>Who's here!?</div>
-                </React.Fragment>
-            )
-        } else {
-            return (
-                <React.Fragment>
-                    <div className="green ">OPEN</div>
-                    <div className="basic-link" onClick={this.toggleParkingModal}>Park here!</div>
-                </React.Fragment>
-            )
-        }
-    };
-
-    clearSpot() {
-        const self = this;
-        window.db.collection("parkingSpots").where("spotNumber", "==", this.props.spotNumber)
-            .get()
-            .then(function (querySnapshot) {
-                querySnapshot.forEach(function (doc) {
-                    // Bud doc ref from doc.id
-                    window.db.collection("parkingSpots").doc(doc.id).update({
-                        'taken': false,
-                        'currentOccupant.name': null,
-                        'currentOccupant.phoneNumber': null,
-                    });
-                });
-            }).then(function (docRef) {
-                self.props.refreshAll();
-            })
-            .catch(function (error) {
-                console.error("Error adding document: ", error);
-            });
-    }
-
-    toggleParkingModal = () => {
-        this.setState({ parkingOpen: !this.state.parkingOpen });
-    };
-
-    toggleWhosHereModal = () => {
-        this.setState({ whosHereOpen: !this.state.whosHereOpen });
-    };
-
-    render() {
-        const { spotNumber, taken, currenOccupant } = this.props;
-        const classN = taken ? 'taken spot' : 'spot';
-
+    if (taken) {
+      if (isParkedHere) {
         return (
-            <div className={classN}>
-                <div className="num ">
-                    {spotNumber}
-                </div>
-                {this.renderTakenStatus()}
-                <ParkHereModal
-                    spotNumber={spotNumber}
-                    open={this.state.parkingOpen}
-                    closeSelf={this.toggleParkingModal}
-                    refreshAll={this.props.refreshAll}
-                />
-                <WhosHereModal
-                    open={this.state.whosHereOpen}
-                    currentOccupant={currenOccupant}
-                    closeSelf={this.toggleWhosHereModal}
-                    clearSpot={this.clearSpot}
-                />
-            </div>
+          <React.Fragment>
+            <div className="teal">MY SPOT</div>
+            <div className="basic-link" onClick={this.toggleActionModal}>Leave Spot</div>
+          </React.Fragment>
         )
+      }
+
+      return (
+        <React.Fragment>
+          <div className="red">OPEN</div>
+          <div className="basic-link" onClick={this.toggleInfoModal}>Who's here?</div>
+        </React.Fragment>
+      )
+    } else {
+      return (
+        <React.Fragment>
+          <div className="green ">OPEN</div>
+          <div className="basic-link" onClick={this.toggleActionModal}>Park here</div>
+        </React.Fragment>
+      )
     }
+  };
+
+  updateGlobalWithCurrentSelection() {
+    const { spotNumber, currentOccupant, user } = this.props;
+
+    let isParkedHere;
+
+    if (user) {
+      isParkedHere = user.uid === currentOccupant.id;
+    }
+
+    const blob = {
+      isParkedAtSelected: isParkedHere,
+      currentSpotSelected: spotNumber,
+      currentOccupantSelected: currentOccupant,
+    }
+
+    this.props.updateCurrentSelections(blob);
+  }
+
+  toggleActionModal = () => {
+    this.updateGlobalWithCurrentSelection();
+    this.props.toggleModal(ACTION_MODAL);
+  };
+
+  toggleInfoModal = () => {
+    this.updateGlobalWithCurrentSelection();
+    this.props.toggleModal(INFO_MODAL);
+  };
+
+  render() {
+    const { spotNumber, taken } = this.props;
+    const classN = taken ? 'taken spot' : 'spot';
+
+    return (
+      <div className={classN}>
+        <div className="num ">
+          {spotNumber}
+        </div>
+        {this.renderTakenStatus()}
+      </div>
+    )
+  }
 }
