@@ -21,8 +21,6 @@ class InfoModal extends Component {
     const { currentOccupant: { id } } = this.props;
     
     const expandedUserProfile = (await db.collection("users").doc(id).get()).data();
-  
-    console.log(expandedUserProfile);
     
     const {
       firstName,

@@ -21,8 +21,6 @@ class ActionModal extends Component {
       .where("spotNumber", "==", spotNumber)
       .get()
     ).docs[0].id;
-    
-    console.log({parkingSpotId});
 
     await db.collection("parkingSpots").doc(parkingSpotId).update({
       'taken': isParkedHere ? false : true,
