@@ -24,7 +24,6 @@ class ActionModal extends Component {
 
     await db.collection("parkingSpots").doc(parkingSpotId).update({
       'taken': isParkedHere ? false : true,
-      'currentOccupant.name': isParkedHere ? null : user.displayName,
       'currentOccupant.id': isParkedHere ? null : user.uid,
     });
       
